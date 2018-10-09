@@ -5,6 +5,7 @@ using System.Text;
 
 namespace AssetStudio
 {
+    [Serializable]
     public class TypeTree
     {
         public string m_Type;

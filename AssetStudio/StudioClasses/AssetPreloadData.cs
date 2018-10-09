@@ -50,7 +50,18 @@ namespace AssetStudio
             var reader = InitReader();
             ShaderData sd = new ShaderData();
             sd.isSuccess = false;
-            if (sourceFile.m_Type.TryGetValue(Type1, out var typeTreeList))
+            try
+            {
+                //check & load typetree
+                if (Studio.typeTreeList.Count == 0)
+                {
+                    var fs = new FileStream(Application.StartupPath + @"\typetreelist.dat", FileMode.Open);
+                    BinaryFormatter binary = new BinaryFormatter();
+                    Studio.typeTreeList = binary.Deserialize(fs) as SortedDictionary<int, List<TypeTree>>;
+                }
+            }catch
+            {}
+            if (sourceFile.m_Type.TryGetValue(Type1, out var typeTreeList)||Studio.typeTreeList.TryGetValue(Type1,out typeTreeList))
             {
                 var sb = new StringBuilder();
                 sd = TypeTreeHelper.ReadShaderTypeString(sb, typeTreeList, reader);

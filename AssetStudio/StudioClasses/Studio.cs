@@ -27,7 +27,8 @@ namespace AssetStudio
         public static Dictionary<string, ModuleDef> LoadedModuleDic = new Dictionary<string, ModuleDef>();
         public static List<GameObjectTreeNode> treeNodeCollection = new List<GameObjectTreeNode>();
         public static Dictionary<GameObject, GameObjectTreeNode> treeNodeDictionary = new Dictionary<GameObject, GameObjectTreeNode>();
-
+        //typetree
+        public static SortedDictionary<int, List<TypeTree>> typeTreeList = new SortedDictionary<int, List<TypeTree>>();
         //UI
         public static Action<int> SetProgressBarValue;
         public static Action<int> SetProgressBarMaximum;

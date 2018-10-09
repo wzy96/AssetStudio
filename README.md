@@ -1,5 +1,10 @@
+
+Can export opengl/opengles2/opengles3 shader to gles shader text.
+The file must contain typetree.
+
+//TODO : export and inport typetree data.
+
 # AssetStudio
-Latest build: [![Build status](https://ci.appveyor.com/api/projects/status/rnu7l90422pdewx4?svg=true)](https://ci.appveyor.com/project/Perfare/assetstudio/branch/master/artifacts)
 
 **None of the repo, the tool, nor the repo owner is affiliated with, or sponsored or authorized by, Unity Technologies or its affiliates.**
 

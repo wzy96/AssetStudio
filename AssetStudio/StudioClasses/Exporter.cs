@@ -82,11 +82,13 @@ namespace AssetStudio
 
         public static bool ExportShader(AssetPreloadData asset, string exportPath)
         {
-            var m_Shader = new Shader(asset);
-            var exportFullName = exportPath + asset.Text + ".shader";
+            var m_Shader = new Shader(asset,true);
+            var exportFullName = exportPath + asset.Text ;
             if (ExportFileExists(exportFullName))
                 return false;
-            File.WriteAllBytes(exportFullName, m_Shader.m_Script);
+            File.WriteAllBytes(exportFullName + ".shader", m_Shader.m_Script);
+            foreach(var data in m_Shader.ShaderText)
+                File.WriteAllBytes(exportFullName +'.'+data.Key.ToString()+ ".txt",data.Value);
             return true;
         }
 

@@ -814,7 +814,7 @@ namespace AssetStudio
                     }
                 case ClassIDReference.Shader:
                     {
-                        Shader m_TextAsset = new Shader(asset);
+                        Shader m_TextAsset = new Shader(asset,false);
                         string m_Script_Text = Encoding.UTF8.GetString(m_TextAsset.m_Script);
                         m_Script_Text = Regex.Replace(m_Script_Text, "(?<!\r)\n", "\r\n");
                         m_Script_Text = m_Script_Text.Replace("\0", "\\0");

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 
@@ -33,6 +35,7 @@ namespace AssetStudio
         public string Dump()
         {
             var reader = InitReader();
+
             if (sourceFile.m_Type.TryGetValue(Type1, out var typeTreeList))
             {
                 var sb = new StringBuilder();
@@ -40,6 +43,22 @@ namespace AssetStudio
                 return sb.ToString();
             }
             return null;
+        }
+
+        public ShaderData DumpShader()
+        {
+            var reader = InitReader();
+            ShaderData sd = new ShaderData();
+            sd.isSuccess = false;
+            if (sourceFile.m_Type.TryGetValue(Type1, out var typeTreeList))
+            {
+                var sb = new StringBuilder();
+                sd = TypeTreeHelper.ReadShaderTypeString(sb, typeTreeList, reader);
+                sd.m_Script = Encoding.Default.GetBytes(sb.ToString());
+                if (sb.Length > 1) sd.isSuccess = true; else sd.isSuccess = false;
+                return sd;
+            }
+            return sd;
         }
 
         public bool HasStructMember(string name)
